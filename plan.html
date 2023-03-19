@@ -111,7 +111,6 @@
             height: 200px; 
         }
 
-
         /*style the horizontal menu*/
         .navigate {
             background-color: #FDE68A;
@@ -160,6 +159,7 @@
             border: 25px solid #fff;
         }
 
+        /*style the input box for recipe name*/
         #recipe_name {
             width: 50%;
         }
@@ -191,27 +191,39 @@
             transition: background-color 0.3s ease;
         }
 
+        .seven_day_plan {
+            margin-top: 10px;
+            margin-left: 25px;  
+        }
+
         /*style the plan section*/
         .plan {
             border: 25px solid #fff;
         }
-
+        
+        
         .plan > table {
             width: 100%;
+            border: 2px solid gray;
         }
-
-        .plan > td, th {
-            padding: 15px;
+        
+        th {
+            padding: 10px;
             background-color:#fbf4d7;
-            vertical-align: top;
         }
 
+        td {
+            height: 60px;
+        }
+
+        /*style the images for the plan section*/
         .image_plan {
             height: 100px;
             width: 150px;
-            margin: 10px 10px 10px 10px;
+            border: 2px solid gray;
+            margin: 10px;
         }
-
+        
 
         input[type="submit"]:hover {
             background-color: #FDE68A;
@@ -267,6 +279,7 @@
             align-items: left;
             border:#232323;
         }
+    
     </style>
 </head>
 
@@ -307,11 +320,11 @@
         </aside>
         <article>
             <div class="navigate">
-                <div class="menu-item active">
+                <div class="menu-item">
                     <a href="addrecipe.html"> Add recipe</a>
                 </div>
-                <div class="menu-item">
-                    <a href="Plan.html"> Plan</a>
+                <div class="menu-item active">
+                    <a href="plan.html"> Plan</a>
                 </div>
                 <div class="menu-item">
                     <a href="cookpage.php"> Cook</a>
@@ -320,78 +333,102 @@
                     <a href="Grocery_list.php"> Grocery list</a>
                 </div>
             </div>
-            <div class="add_recipe">
-                <label for="recipe_name" class="recipe_name">Recipe name </label><br>
-                <input type="text" id="recipe_name" name="recipe_name" placeholder="recipe name"><br>
-
-                <label for="mealtype" class="meal_type" >Meal type</label><br>
-                <select id="mealtype" name="mealtype" class="meal_type_menu">
-                    <option value="blank"></option>
-                    <option value="plantbased">Plant based</option>
-                    <option value="animalprotien">Animal protien</option>
-                </select><br><br>
-
-                <div class="recipe_table">
+            <form action="xxx.php">
+                <div class="generate_plan">
+                    <button type="submit" class="seven_day_plan">Create my seven day meal plan</button>
+                    <span class="tooltip">&#9432;</span>
+                </div>
+                <div class="plan">
                 <table>
+                    <thead>
                     <tr>
-                        <th id="amount">Amount</th>
-                        <th id="measurement">Measurement</th>
-                        <th id="ingredient">Ingredient</th>
+                        <th>Sunday</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                        <th>Saturday</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Breakfast</td>
+                        <td>Breakfast</td>
+                        <td>Breakfast</td>
+                        <td>Breakfast</td>
+                        <td>Breakfast</td>
+                        <td>Breakfast</td>
+                        <td>Breakfast</td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="text" id="amount" name="amount"><br>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td><img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
+                        </td>
+                        <td></td>
+                        <td>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
                         </td>
                         <td>
-                            <input type="text" id="measurement" name="measurement"><br>
-                        </td>
-                        <td colspan="2">
-                            <input type="text" id="ingredient" name="ingredient"><br>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
                         </td>
                     </tr>
                     <tr>
+                        <td>Lunch</td>
+                        <td>Lunch</td>
+                        <td>Lunch</td>
+                        <td>Lunch</td>
+                        <td>Lunch</td>
+                        <td>Lunch</td>
+                        <td>Lunch</td>
+                    </tr>
+                    <tr>
+                        <td></td>
                         <td>
-                            <input type="text" id="amount" name="amount"><br>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
                         </td>
                         <td>
-                            <input type="text" id="measurement" name="measurement"><br>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
                         </td>
-                        <td colspan="2">
-                            <input type="text" id="ingredient" name="ingredient"><br>
-                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Dinner</td>
+                        <td>Dinner</td>
+                        <td>Dinner</td>
+                        <td>Dinner</td>
+                        <td>Dinner</td>
+                        <td>Dinner</td>
+                        <td>Dinner</td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="text" id="amount" name="amount"><br>
+                            <img src="https://bing.com/th?id=OSK.8ff397674ca470c85e212b58f2a765bb" alt="description of the image" class="image_plan">
                         </td>
+                        <td></td>
                         <td>
-                            <input type="text" id="measurement" name="measurement"><br>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
                         </td>
-                        <td colspan="2">
-                            <input type="text" id="ingredient" name="ingredient"><br>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
                         </td>
+                        <td></td>
                     </tr>
-                    <tr>
-                        <td>
-                            <input type="text" id="amount" name="amount"><br>
-                        </td>
-                        <td>
-                            <input type="text" id="measurement" name="measurement"><br>
-                        </td>
-                        <td colspan="2">
-                            <input type="text" id="ingredient" name="ingredient"><br>
-                        </td>
-                    </tr>
+
+                    </tbody>
                 </table>
                 </div>
-                <div class = "instruction_entry">
-                    <label for="instructions">Instructions</label><br>
-                    <textarea name="instructions" id="instructions" rows="10"></textarea>
-                </div>
-                <div class=submit>
-                    <input type="submit">
-                </div>
-            </div>
             </form>
         </article>
     </section>
