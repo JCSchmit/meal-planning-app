@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Meal Planning App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Helvetica, sans-serif;
+        }
+
+        /* Style the header */
+        header {
+            background-color: #F9A826;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+            font-weight: 400;
+            font-size: 2rem;
+        }
+
+        /*Style the menu*/
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+
+        /*Style the account button*/
+        .circle-btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: none;
+            background-color: #ffffff;
+            color: #F9A826;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.2s ease-out;
+        }
+
+        /*On hover, scale the account button*/
+        .circle-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Container for flexboxes */
+        section {
+            display: -webkit-flex;
+            display: flex;
+        }
+
+        /* Style left panel */
+        aside {
+            -webkit-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            background: #ccc;
+            padding: 20px;
+        }
+
+        label {
+            font-family: "Helvetica";
+            font-weight: 400;
+            font-size: 26px;
+            text-align: left;
+            text-decoration: solid;
+        }
+
+        /*style the Meal type dropdown*/
+        .meal_type_menu {
+            width: 234px;
+            height: 34px;
+            padding: 4px 8px 4px 8px;
+            background: #fff;
+            color: #232323;
+            border-color: #232323;
+            border-width: 1px;
+            border-style: solid;
+            border-radius: 4px 4px 4px 4px;
+            font-family: "Helvetica";
+            font-weight: 400;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        /*style the Ingredient search box*/
+        .ingredient_search_box {
+            width: 239px;
+            height: 41px;
+            padding: 8px 8px 8px 8px;
+            background: #fff;
+        }
+
+        /*style the images in the left navigation pane*/
+        .image {
+            padding-top: 10px;
+            width: 300px; 
+            height: 200px; 
+        }
+
+        /*style the horizontal menu*/
+        .navigate {
+            background-color: #FDE68A;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Style the menu items */
+        .menu-item {
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #000;
+            transition: background-color 0.2s ease-out;
+        }
+
+        a {
+            color: black;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: gray;
+        }
+
+        /* Style the active menu item */
+        .active {
+            background-color: #F9A826;
+            color: #fff;
+        }
+
+        /* Style the content */
+        article {
+            -webkit-flex: 4;
+            -ms-flex: 4;
+            flex: 4;
+            background-color: #fff;
+        }
+        
+        /*style add recipe section*/
+        /*add a border to the recipe div*/
+        .add_recipe {
+            border: 25px solid #fff;
+        }
+
+        /*style the input box for recipe name*/
+        #recipe_name {
+            width: 50%;
+        }
+
+        input[type=text], textarea{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            }
+        
+        /*set the width for the ingredient entry*/
+        #ingredient {
+            width: 100%;
+        }
+
+        /*style submit buttons*/
+        input[type="submit"] {
+            background-color:#F9A826;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .seven_day_plan {
+            margin-top: 10px;
+            margin-left: 25px;  
+        }
+
+        /*style the plan section*/
+        .plan {
+            border: 25px solid #fff;
+        }
+        
+        
+        .plan > table {
+            width: 100%;
+            border: 2px solid gray;
+        }
+        
+        th {
+            padding: 10px;
+            background-color:#fbf4d7;
+        }
+
+        td {
+            height: 60px;
+        }
+
+        /*style the images for the plan section*/
+        .image_plan {
+            height: 100px;
+            width: 150px;
+            border: 2px solid gray;
+            margin: 10px;
+        }
+        
+
+        input[type="submit"]:hover {
+            background-color: #FDE68A;
+        }
+        
+        /* Style the footer */
+        footer {
+            background-color: #F9A826;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        /* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
+        @media (max-width: 600px) {
+            section {
+                -webkit-flex-direction: column;
+                flex-direction: column;
+            }
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+        }
+
+        .ingredients {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 3px;
+            margin-top: 20px;
+            align-self: center;
+            align-items: center;
+        }
+
+        .instructions {
+            margin-top: 20px;
+        }
+
+        /* */
+
+        /*
+        img {
+            height: 300px;
+            max-width: 300px;
+            display: block;
+        }
+        */
+        table {
+            align-self: center;
+            align-items: left;
+            border:#232323;
+        }
+    
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="menu">
+            <h1>Meal Planning App</h1>
+            <!--Link to user profile page-->
+            <a href="accountUserProfile.html"> <button class="circle-btn">Account</button></a>
+        </div>
+    </header>
+    <!-- Main section -->
+    <section>
+        <!--Left panel-->
+        <aside>
+            <label for="mealtype" class="meal_type" >Meal type</label><br>
+            <select id="mealtype" name="mealtype" class="meal_type_menu">
+                <option value="blank">Select to filter</option>
+                <option value="plantbased">Plant based</option>
+                <option value="animalprotien">Animal protien</option>
+            </select><br><br>
+            
+            <label for="ingredient_search" class="ingredient">Ingredient</label><br>
+            <input type="text" id="ingredient_search" name="ingredient_search" placeholder="search" class="ingredient_search_box">
+
+            <image-container>
+                <img src="https://placehold.co/240X160" alt="description of the image" class="image">
+            </image-container>
+
+            <image-container>
+                <img src="https://placehold.co/240X160" alt="description of the image" class="image">
+            </image-container>
+
+            <image-container>
+                <img src="https://placehold.co/240X160" alt="description of the image" class="image">
+            </image-container>
+        </aside>
+        <article>
+            <div class="navigate">
+                <div class="menu-item">
+                    <a href="addrecipe.html"> Add recipe</a>
+                </div>
+                <div class="menu-item active">
+                    <a href="plan.html"> Plan</a>
+                </div>
+                <div class="menu-item">
+                    <a href="cookpage.php"> Cook</a>
+                </div>
+                <div class="menu-item">
+                    <a href="Grocery_list.php"> Grocery list</a>
+                </div>
+            </div>
+            <form action="xxx.php">
+                <div class="generate_plan">
+                    <button type="submit" class="seven_day_plan">Create my seven day meal plan</button>
+                    <span class="tooltip">&#9432;</span>
+                </div>
+                <div class="plan">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Sunday</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                        <th>Saturday</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Breakfast</td>
+                        <td>Breakfast</td>
+                        <td>Breakfast</td>
+                        <td>Breakfast</td>
+                        <td>Breakfast</td>
+                        <td>Breakfast</td>
+                        <td>Breakfast</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td><img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
+                        </td>
+                        <td></td>
+                        <td>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
+                        </td>
+                        <td>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Lunch</td>
+                        <td>Lunch</td>
+                        <td>Lunch</td>
+                        <td>Lunch</td>
+                        <td>Lunch</td>
+                        <td>Lunch</td>
+                        <td>Lunch</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
+                        </td>
+                        <td>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Dinner</td>
+                        <td>Dinner</td>
+                        <td>Dinner</td>
+                        <td>Dinner</td>
+                        <td>Dinner</td>
+                        <td>Dinner</td>
+                        <td>Dinner</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="https://bing.com/th?id=OSK.8ff397674ca470c85e212b58f2a765bb" alt="description of the image" class="image_plan">
+                        </td>
+                        <td></td>
+                        <td>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
+                        </td>
+                        <td></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                </div>
+            </form>
+        </article>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Meal Planning App. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
