@@ -1,60 +1,8 @@
-<!-- <!DOCTYPE html>
-<html>
-
-<head>
-    <title>Meal Planner App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-</head>
-
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-        <h1>Meal Planner App</h1>
-        <p>Plan your meals like a pro!</p>
-        <a href="#signup" class="button">Sign Up Now</a>
-    </header>
-
-    <section id="features">
-        <h2>Features</h2>
-        <ul>
-            <li>Create custom meal plans</li>
-            <li>Generate grocery lists</li>
-            <li>Save your favorite recipes</li>
-        </ul>
-    </section>
-
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <p>Have a question or suggestion? We'd love to hear from you!</p>
-        <form>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
-            <button type="submit" class="button">Send</button>
-        </form>
-    </section>
-
-    <footer>
-        <p>&copy; 2023 Meal Planner App. All rights reserved.</p>
-    </footer>
-</body>
-
-</html> -->
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Meal Planning App</title>
+    <title>Meal Planning App Home Page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
@@ -156,13 +104,18 @@
             margin: 0;
         }
 
+        img {
+         height: 500px;
+
+        }
+
         /* Style for footer */
         footer {
             background-color: #F9A826;
-            color: #fff;
-            padding: 20px;
+            padding: 5px;
             text-align: center;
-            font-size: 1.2rem;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
@@ -173,7 +126,7 @@
 
         <h1>Meal Planning App</h1>
         <p>Get your daily meals planned with ease</p>
-        <a href="login.html"> <button class="circle-btn">Login</button> </a>
+        <a href="Mealpreplogin.html"> <button class="circle-btn">Login</button> </a>
 
     </header>
     <!-- Main section -->
@@ -183,7 +136,7 @@
             <div class="feature">
                 <i class="fas fa-utensils"></i>
                 <image-container>
-                    <img src="mealplan.avif" alt="description of the image">
+                    <img src="meal_plan.jpg" alt="description of the image">
                 </image-container>
                 <h3>Easy Meal Planning</h3>
                 <p>Plan your meals for the entire week with just a few clicks.</p>
@@ -192,7 +145,7 @@
             <div class="feature">
                 <i class="fas fa-shopping-basket"></i>
                 <image-container>
-                    <img src="shopping.avif" alt="description of the image">
+                    <img src="shop.jpg" alt="description of the image">
                 </image-container>
                 <h3>Automated Grocery Lists</h3>
                 <p>Generate a grocery list based on your meal plan and never forget an ingredient.</p>
@@ -200,13 +153,13 @@
             <div class="feature">
                 <i class="fas fa-user-friends"></i>
                 <image-container>
-                    <img src="customise.avif" alt="description of the image">
+                    <img src="cook.jpg" alt="description of the image">
                 </image-container>
                 <h3>Customizable for Your Needs</h3>
                 <p>Choose from different recipes and preferences to tailor your meal plan to your needs.</p>
             </div>
         </div>
-        <a href="signup.html" class="cta">Get Started Now</a>
+        <a href="createAccount.html" class="cta">Get Started Now</a>
     </section>
     <!-- Footer -->
     <footer>
