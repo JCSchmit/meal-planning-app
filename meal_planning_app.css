@@ -228,6 +228,7 @@ table {
 }
 
 th {
+    width: 14.28%;
     padding: 15px;
     background-color:#fbf4d7;
 }
@@ -237,8 +238,8 @@ td {
 }
 
 .image_plan {
-    height: 100px;
-    width: 150px;
+    max-width: 100%;
+    height: auto;
     margin: 5px 5px 5px 5px;
 }
 
