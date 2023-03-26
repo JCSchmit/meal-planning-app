@@ -1,0 +1,15 @@
+INSERT INTO user VALUES
+(NULL, 'LillianRHurley@armyspy.com', 'ahFab6av', '2023-03-26')
+(NULL, 'WilliamLRittenberry@dayrep.com', 'ohneec1Osh', '2023-03-25'),
+(NULL, 'LupeBVance@teleworm.us', 'dee2keeQuu', '2023-03-24'),
+(NULL, 'CharlesMMartindale@dayrep.com', 'Yaca0boh1L', '2023-02-26'),
+(NULL, 'RachelLValdez@rhyta.com', 'Hiday1980', '2023-01-25'),
+(NULL, 'ShaneLOliveras@teleworm.us', 'Theartumety', '2023-03-26'),
+(NULL, 'BenitaBuijtendijk@armyspy.com', 'aib0paHie', '2023-03-26'),
+(NULL, 'KajaFeringa@teleworm.us', 'QuaisheL1U', '2023-03-26'),
+(NULL, 'NajaahFawziyaShalhoub@armyspy.com', 'Eequ0fap', '2023-03-26'),
+(NULL, 'HusaynFadiSamaha@teleworm.us', 'eim8eu5Aezug', '2023-03-26');
+
+
+
+ 
