@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
     <style>
+<<<<<<< Updated upstream
     * {
         box-sizing: border-box;
     }
@@ -227,6 +228,12 @@
         align-items: left;
     }
 
+=======
+    
+    label {
+    margin: 10px; 
+    }
+>>>>>>> Stashed changes
     /* for styling the grocery list */
     ul {
         list-style: none;
@@ -254,8 +261,12 @@
     <header>
         <div class="menu">
             <h1>Meal Planning App</h1>
+<<<<<<< Updated upstream
             <!--To do: Update href with account link-->
             <a href="account.html"> <button class="circle-btn">Account</button></a>
+=======
+            <a href="accountUserProfile.html"> <button class="circle-btn">Account</button></a>
+>>>>>>> Stashed changes
         </div>
     </header>
 
@@ -298,35 +309,47 @@
                     <a href="cookpage.php"> Cook</a>
                 </div>
                 <div class="menu-item active">
-                    <a href="Grocery_list.php"> Grocery list</a>
+                    <a href="create_grocery_list.html"> Grocery list</a>
                 </div>
             </div>
-            <form method="POST" action="xxx.php">
                 <br>
-                <label for="grocery_list">Seven Day Grocery list</label><br>
-                <ul class="grocery-list">
-                    <li>
-                        <input type="checkbox" id="item1" name="item1" value="item1">
-                        <label for="item1">Eggs</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" id="item2" name="item2" value="item2">
-                        <label for="item2">Milk</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" id="item3" name="item3" value="item3">
-                        <label for="item3">Bread</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" id="item4" name="item4" value="item4">
-                        <label for="item4">Cheese</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" id="item5" name="item5" value="item5">
-                        <label for="item5">Chicken</label>
-                    </li>
-                </ul>
+                <label for="grocery_list">Seven day grocery list: </label><br><br>
+                <?php
+                //create short variable names
+                $plan_start_date=$_POST['plan_start_date'];
 
+                //connect to database
+                $servername = "localhost";
+                $username = "root";
+                $password = null;
+                $dbname = "mealplanningapp_db";
+
+                //create connection
+                @$conn = new mysqli($servername, $username, $password, $dbname);
+
+                //check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+
+                
+                //
+                $sql = "SELECT ingredient_name, ingredient_qty, qty_type FROM ingredients JOIN meal_plan ON ingredients.recipe_id=meal_plan.recipe_id WHERE meal_plan.plan_start_date='$plan_start_date'";
+                $result = $conn->query($sql);
+                
+                if ($result->num_rows > 0) {
+                    echo "<ul class='grocery_list'>";
+                  // output data of each row
+                  while($row = $result->fetch_assoc()) {
+                    echo  "<li><input type='checkbox'>" . "<strong>" . $row["ingredient_name"] . "</strong>" . ":    " . "(" . $row["ingredient_qty"] . " " .  $row["qty_type"] . ")" . "</li>";
+                  }
+                } else {
+                  echo "No ingredients found.";
+                }
+                
+                //close connection to database
+                $conn->close();
+                ?>
             </form>
         </article>
     </section>
