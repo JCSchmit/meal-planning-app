@@ -6,8 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
+    <link href="meal_planning_app.css" rel="stylesheet">
     <style>
-<<<<<<< Updated upstream
+
     * {
         box-sizing: border-box;
     }
@@ -228,12 +229,12 @@
         align-items: left;
     }
 
-=======
+
     
     label {
     margin: 10px; 
     }
->>>>>>> Stashed changes
+
     /* for styling the grocery list */
     ul {
         list-style: none;
@@ -261,12 +262,9 @@
     <header>
         <div class="menu">
             <h1>Meal Planning App</h1>
-<<<<<<< Updated upstream
-            <!--To do: Update href with account link-->
+
             <a href="account.html"> <button class="circle-btn">Account</button></a>
-=======
             <a href="accountUserProfile.html"> <button class="circle-btn">Account</button></a>
->>>>>>> Stashed changes
         </div>
     </header>
 

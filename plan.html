@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Meal Planning App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
+    <link href="meal_planning_app.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="menu">
+            <h1>Meal Planning App</h1>
+            <!--Link to user profile page-->
+            <a href="accountUserProfile.html"> <button class="circle-btn">Account</button></a>
+        </div>
+    </header>
+    <!-- Main section -->
+    <section>
+        <!--Left panel-->
+        <aside>
+            <label for="mealtype" class="meal_type" >Meal type</label><br>
+            <select id="mealtype" name="mealtype" class="meal_type_menu">
+                <option value="blank">Select to filter</option>
+                <option value="plantbased">Plant based</option>
+                <option value="animalprotien">Animal protien</option>
+            </select><br><br>
+            
+            <label for="ingredient_search" class="ingredient">Ingredient</label><br>
+            <input type="text" id="ingredient_search" name="ingredient_search" placeholder="search" class="ingredient_search_box">
+
+            <image-container>
+                <img src="https://placehold.co/240X160" alt="description of the image" class="image">
+            </image-container>
+
+            <image-container>
+                <img src="https://placehold.co/240X160" alt="description of the image" class="image">
+            </image-container>
+
+            <image-container>
+                <img src="https://placehold.co/240X160" alt="description of the image" class="image">
+            </image-container>
+        </aside>
+        <article>
+            <div class="navigate">
+                <div class="menu-item">
+                    <a href="addrecipe.html"> Add recipe</a>
+                </div>
+                <div class="menu-item active">
+                    <a href="plan.html"> Plan</a>
+                </div>
+                <div class="menu-item">
+                    <a href="cookpage.php"> Cook</a>
+                </div>
+                <div class="menu-item">
+                    <a href="Grocery_list.php"> Grocery list</a>
+                </div>
+            </div>
+            <!--To do: Add php file path-->
+            <form action="xxx.php">
+                <div class="generate_plan">
+                    <button type="submit" class="seven_day_plan">Create my seven day meal plan</button>
+                    <span class="tooltip">&#9432;</span>
+                </div>
+                <div class="plan">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Sunday</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                        <th>Saturday</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Breakfast</td>
+                        <td>Breakfast</td>
+                        <td>Breakfast</td>
+                        <td>Breakfast</td>
+                        <td>Breakfast</td>
+                        <td>Breakfast</td>
+                        <td>Breakfast</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td><img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
+                        </td>
+                        <td></td>
+                        <td>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
+                        </td>
+                        <td>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Lunch</td>
+                        <td>Lunch</td>
+                        <td>Lunch</td>
+                        <td>Lunch</td>
+                        <td>Lunch</td>
+                        <td>Lunch</td>
+                        <td>Lunch</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
+                        </td>
+                        <td>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Dinner</td>
+                        <td>Dinner</td>
+                        <td>Dinner</td>
+                        <td>Dinner</td>
+                        <td>Dinner</td>
+                        <td>Dinner</td>
+                        <td>Dinner</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="https://bing.com/th?id=OSK.8ff397674ca470c85e212b58f2a765bb" alt="description of the image" class="image_plan">
+                        </td>
+                        <td></td>
+                        <td>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <img src="https://placehold.co/150X100" alt="description of the image" class="image_plan">
+                        </td>
+                        <td></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                </div>
+            </form>
+        </article>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Meal Planning App. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

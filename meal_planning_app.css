@@ -1,0 +1,310 @@
+* {
+    box-sizing: border-box;
+}
+
+/* Style the header */
+header {
+    background-color: #F9A826;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    font-weight: 400;
+    font-size: 2rem;
+}
+
+body {
+    font-family: Helvetica, sans-serif;
+}
+
+/*Style "Meal planning app" heading*/
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+/*Style the account button/plan recipe button*/
+.circle-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: none;
+    background-color: #ffffff;
+    color: #F9A826;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.2s ease-out;
+}
+
+/*On hover, scale the account button*/
+.circle-btn:hover {
+    transform: scale(1.1);
+}
+
+/*Style the 'Create Account' page
+form {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px #ccc;
+    padding: 20px;
+    margin: 105px auto 20px;
+    max-width: 500px;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 65vh;
+    padding: 20px;
+  }
+*/
+
+/* Container for flexboxes */
+section {
+    display: -webkit-flex;
+    display: flex;
+}
+
+/* Style left panel */
+aside {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    background: #ccc;
+    padding: 20px;
+}
+
+label {
+    font-family: "Helvetica";
+    font-weight: 400;
+    font-size: 26px;
+    text-align: left;
+    text-decoration: solid;
+}
+
+/*style the Meal type dropdown*/
+.meal_type_menu {
+    width: 234px;
+    height: 34px;
+    padding: 4px 8px 4px 8px;
+    background: #fff;
+    color: #232323;
+    border-color: #232323;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px 4px 4px 4px;
+    font-family: "Helvetica";
+    font-weight: 400;
+    font-size: 14px;
+    text-align: left;
+}
+
+/*style the Ingredient search box*/
+.ingredient_search_box {
+    width: 80%;
+    height: 41px;
+    padding: 8px 8px 8px 8px;
+    background: #fff;
+}
+
+/*style the images in the left navigation pane*/
+.image {
+    padding-top: 10px;
+    width: 300px; 
+    height: 200px; 
+}
+
+
+/*style the horizontal menu*/
+.navigate {
+    background-color: #FDE68A;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Style the menu items */
+.menu-item {
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #000;
+    transition: background-color 0.2s ease-out;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: gray;
+}
+
+/* Style the active menu item */
+.active {
+    background-color: #F9A826;
+    color: #fff;
+}
+
+/* Style the content */
+article {
+    -webkit-flex: 4;
+    -ms-flex: 4;
+    flex: 4;
+    background-color: #fff;
+}
+
+/*style add recipe section*/
+/*add a border to the recipe div*/
+.recipe {
+    border: 25px solid #fff;
+}
+
+#recipe_name {
+    width: 50%;
+}
+
+input[type=text], textarea{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    }
+
+/*set the width for the ingredient entry*/
+#ingredient {
+    width: 100%;
+}
+
+/*style submit buttons*/
+input[type="submit"] {
+    background-color:#F9A826;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+table {
+    align-self: center;
+    align-items: left;
+    border:#232323;
+}
+
+/*style the plan section*/
+.plan {
+    border: 25px solid #fff;
+}
+
+.plan > table {
+    width: 100%;
+    border: 2px solid gray;
+}
+
+th {
+    width: 14.28%;
+    padding: 15px;
+    background-color:#fbf4d7;
+}
+
+td {
+    height: 60px;
+}
+
+.image_plan {
+    max-width: 100%;
+    height: auto;
+    margin: 5px 5px 5px 5px;
+}
+
+
+input[type="submit"]:hover {
+    background-color: #FDE68A;
+}
+
+.seven_day_plan {
+    margin-top: 10px;
+    margin-left: 25px;  
+}
+
+/* Style the footer */
+footer {
+    background-color: #F9A826;
+    padding: 5px;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
+@media (max-width: 600px) {
+    section {
+        -webkit-flex-direction: column;
+        flex-direction: column;
+    }
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 40px;
+}
+
+.ingredients {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 3px;
+    margin-top: 20px;
+    align-self: center;
+    align-items: center;
+}
+
+.instructions {
+    margin-top: 20px;
+}
+
+/*Style the image on the user account page */
+.user-image img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 400px;
+  }
+
+/* */
+
+/*
+img {
+    height: 300px;
+    max-width: 300px;
+    display: block;
+}
+*/

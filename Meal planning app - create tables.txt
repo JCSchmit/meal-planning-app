@@ -1,0 +1,58 @@
+CREATE TABLE user
+(account_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+user_email CHAR (100) NOT NULL,
+password CHAR (20) not null,
+create_date DATE not null
+);
+
+CREATE TABLE recipes
+(recipe_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+account_id INT(10) UNSIGNED NOT NULL,
+recipe_name CHAR (100) NOT NULL,
+instruction_text VARCHAR (255) NOT NULL,
+meal_type CHAR (20) NOT NULL
+);
+
+ALTER TABLE recipes ADD FOREIGN KEY (account_id) REFERENCES user(account_id);
+
+CREATE TABLE ingredients
+(ingredient_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+recipe_id INT(10) UNSIGNED NOT NULL,
+ingredient_name CHAR(50) NOT NULL, 
+ingredient_qty CHAR(3), 
+qty_type CHAR(10)
+);
+
+ALTER TABLE ingredients ADD FOREIGN KEY (recipe_id) REFERENCES recipes(recipe_id);
+
+CREATE TABLE meal_plan
+(meal_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+account_id INT(10) UNSIGNED NOT NULL,
+recipe_id INT(10) UNSIGNED NOT NULL,
+plan_start_date DATE not null,
+plan_end_date DATE not null
+);
+
+ALTER TABLE meal_plan ADD FOREIGN KEY (account_id) REFERENCES user(account_id);
+
+ALTER TABLE meal_plan ADD FOREIGN KEY (recipe_id) REFERENCES recipes(recipe_id);
+
+CREATE TABLE recipe_ingredients
+(recipe_id INT(10) UNSIGNED NOT NULL,
+ingredient_id INT(10) UNSIGNED NOT NULL
+);
+
+ALTER TABLE recipe_ingredients ADD FOREIGN KEY (recipe_id) REFERENCES recipes(recipe_id);
+
+ALTER TABLE recipe_ingredients ADD FOREIGN KEY (ingredient_id) REFERENCES ingredients(ingredient_id);
+
+CREATE TABLE plan_recipe
+(recipe_id INT(10) UNSIGNED NOT NULL,
+meal_id INT UNSIGNED
+);
+
+ALTER TABLE plan_recipe ADD FOREIGN KEY (recipe_id) REFERENCES recipes(recipe_id);
+
+ALTER TABLE plan_recipe ADD FOREIGN KEY (meal_id) REFERENCES meal_plan(meal_id);
+
+
