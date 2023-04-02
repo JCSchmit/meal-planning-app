@@ -1,5 +1,5 @@
 INSERT INTO user VALUES
-(NULL, 'LillianRHurley@armyspy.com', 'ahFab6av', '2023-03-26')
+(NULL, 'LillianRHurley@armyspy.com', 'ahFab6av', '2023-03-26'),
 (NULL, 'WilliamLRittenberry@dayrep.com', 'ohneec1Osh', '2023-03-25'),
 (NULL, 'LupeBVance@teleworm.us', 'dee2keeQuu', '2023-03-24'),
 (NULL, 'CharlesMMartindale@dayrep.com', 'Yaca0boh1L', '2023-02-26'),
@@ -30,7 +30,7 @@ INSERT INTO ingredients VALUES
 (NULL, 1, 'water','1', 'cup'),
 (NULL, 1, 'salt','1/8', 'tsp'),
 (NULL, 1, 'cinnamon','1/2', 'tsp'),
-(NULL, 1, 'honey','1', 'tsp');
+(NULL, 1, 'honey','1', 'tsp'),
 (NULL, 2, 'plaintain', '1', 'large'),
 (NULL, 2, 'coconut oil', '1.5', 'tbsp'),
 (NULL, 2, 'salt',' ', 'pinch'),
