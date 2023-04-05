@@ -50,16 +50,15 @@
                 <botton id="ingredientsearch" name="ingredientsearch" type="submit">
                     Search</botton>
             </form>
-
             <?php
             displayRecipeNames();
             ?>
-            </form>
+
         </aside>
         <article>
             <div class="navigate">
                 <div class="menu-item">
-                    <a href="addrecipe.html"> Add recipe</a>
+                    <a href="addrecipe.php"> Add recipe</a>
                 </div>
                 <div class="menu-item">
                     <a href="Plan.html"> Plan</a>
