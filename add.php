@@ -23,7 +23,7 @@ function displayRecipeNames()
     if ($result->num_rows > 0) {
         echo "<ul>";
         while ($row = $result->fetch_assoc()) {
-            echo "<li><form><input type='hidden' name='selected' value='" . $row['recipe_id'] . "'>
+            echo "<li><form><input type='hidden' value='" . $row['recipe_id'] . "'>
             <button >" . $row['recipe_name'] . "</button></form></li>";
         }
         echo "</ul>";
@@ -88,57 +88,64 @@ function addDatatoTable()
         $ingredient_names = $_POST['ingredient_name'];
         $ingredient_quantities = $_POST['ingredient_quantity'];
         $ingredient_units = $_POST['ingredient_unit'];
-        // Prepare the recipe insert statement
-        $recipe_stmt = $conn->prepare('INSERT INTO recipes (recipe_name, meal_type, instruction_text) VALUES (?, ?, ?)');
-        $recipe_stmt->bind_param('sss', $recipe_name, $meal_type, $instructions);
+        //check if the recipe already exists
+        $recipe_result = $conn->query("SELECT recipe_id FROM recipes WHERE 
+        recipe_name = '$recipe_name'");
+        if ($recipe_result->num_rows > 0) {
+            echo "<p>This recipe name already exists.</p>";
+        } else {
+            // Prepare the recipe insert statement
+            $recipe_stmt = $conn->prepare('INSERT INTO recipes (recipe_name, meal_type, instruction_text) VALUES (?, ?, ?)');
+            $recipe_stmt->bind_param('sss', $recipe_name, $meal_type, $instructions);
 
-        // Insert the recipe and retrieve its id
-        $recipe_stmt->execute();
-        $recipe_id = $conn->insert_id;
+            // Insert the recipe and retrieve its id
+            $recipe_stmt->execute();
+            $recipe_id = $conn->insert_id;
 
-        // Counter for filled rows
-        $filled_rows = 0;
+            // Counter for filled rows
+            $filled_rows = 0;
 
-        // Loop through the form data to validate and count filled rows
-        for ($i = 0; $i < count($ingredient_names); $i++) {
-            $name = $ingredient_names[$i];
-            $quantity = $ingredient_quantities[$i];
-            $unit = $ingredient_units[$i];
+            // Loop through the form data to validate and count filled rows
+            for ($i = 0; $i < count($ingredient_names); $i++) {
+                $name = $ingredient_names[$i];
+                $quantity = $ingredient_quantities[$i];
+                $unit = $ingredient_units[$i];
 
-            // Check if at least one field is filled for the current row
-            if (!empty($name) || !empty($quantity)) {
-                $filled_rows++;
-            }
-
-            if ($filled_rows > 0) {
-                // Save data to database        
-                // Check if the ingredient already exists in the database            
-                $ingredient_result = $conn->query("SELECT ingredient_id FROM ingredients WHERE 
-                ingredient_name = '$name' AND ingredient_qty = '$quantity' AND qty_type = '$unit'");
-
-                if ($ingredient_result->num_rows > 0) {
-                    $ingredient_id = $ingredient_result->fetch_assoc()['ingredient_id'];
-                } else {
-                    // Otherwise, insert the ingredient into the database and retrieve its id
-                    $conn->query("INSERT INTO ingredients (ingredient_name, ingredient_qty, qty_type ) 
-                    VALUES ('$name', '$quantity', '$unit')");
-
-                    $ingredient_id = $conn->insert_id;
+                // Check if at least one field is filled for the current row
+                if (!empty($name) || !empty($quantity)) {
+                    $filled_rows++;
                 }
 
-                // Prepare the recipe-ingredient insert statement
-                $recipe_ingredient_stmt = $conn->prepare('INSERT INTO recipe_ingredients (recipe_id, ingredient_id) VALUES (?, ?)');
-                $recipe_ingredient_stmt->bind_param('ii', $recipe_id, $ingredient_id);
+                if ($filled_rows > 0) {
+                    // Save data to database        
+                    // Check if the ingredient already exists in the database            
+                    $ingredient_result = $conn->query("SELECT ingredient_id FROM ingredients WHERE 
+                ingredient_name = '$name' AND ingredient_qty = '$quantity' AND qty_type = '$unit'");
 
-                // Insert the recipe-ingredient relationship
-                $recipe_ingredient_stmt->execute();
-                $recipe_ingredient_stmt->close();
+                    if ($ingredient_result->num_rows > 0) {
+                        $ingredient_id = $ingredient_result->fetch_assoc()['ingredient_id'];
+                    } else {
+                        // Otherwise, insert the ingredient into the database and retrieve its id
+                        $conn->query("INSERT INTO ingredients (ingredient_name, ingredient_qty, qty_type ) 
+                    VALUES ('$name', '$quantity', '$unit')");
+
+                        $ingredient_id = $conn->insert_id;
+                    }
+
+                    // Prepare the recipe-ingredient insert statement
+                    $recipe_ingredient_stmt = $conn->prepare('INSERT INTO recipe_ingredients (recipe_id, ingredient_id) VALUES (?, ?)');
+                    $recipe_ingredient_stmt->bind_param('ii', $recipe_id, $ingredient_id);
+
+                    // Insert the recipe-ingredient relationship
+                    $recipe_ingredient_stmt->execute();
+                    $recipe_ingredient_stmt->close();
+                }
             }
+
+            // Close the prepared statements and database connection
+            $recipe_stmt->close();
+
+            echo "<p><strong>recipe_name is added successfully</strong></p>";
         }
-
-        // Close the prepared statements and database connection
-        $recipe_stmt->close();
-
-        echo "<p><strong>recipe_name is added successfully</strong></p>";
     }
 }

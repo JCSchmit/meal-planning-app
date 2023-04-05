@@ -68,7 +68,7 @@
                     <a href="cookpage.php"> Cook</a>
                 </div>
                 <div class="menu-item">
-                    <a href="Grocery_list.php"> Grocery list</a>
+                    <a href="create_grocery_list.html"> Grocery list</a>
                 </div>
             </div>
             <div class="recipe">

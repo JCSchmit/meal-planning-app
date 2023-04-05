@@ -50,7 +50,6 @@ function displayIngredientRecipe()
     global $selectedid;
 
     $r_id = $selectedid;
-    //$i_id = $_GET['i_id'];
 
     // Retrieve the recipe information using a JOIN query
     $sql = "SELECT ingredients.ingredient_qty, ingredients.qty_type, ingredients.ingredient_name
@@ -73,7 +72,7 @@ function displayIngredientRecipe()
         }
         echo "</table>";
     } else {
-        echo "No ingredients found for this recipe.";
+        echo "Select a recipe to see ingredients.";
     }
 }
 
@@ -99,6 +98,6 @@ function displayRecipeInstruction()
             echo $step . "<br>";
         }
     } else {
-        echo "Instructions not found for selected recipe.";
+        echo "Instructions are shown when you select a recipe.";
     }
 }
