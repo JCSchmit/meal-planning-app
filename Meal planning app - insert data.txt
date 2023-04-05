@@ -1,5 +1,5 @@
 INSERT INTO user VALUES
-(NULL, 'LillianRHurley@armyspy.com', 'ahFab6av', '2023-03-26'),
+(NULL, 'test@test.com', '123', '2023-03-26'),
 (NULL, 'WilliamLRittenberry@dayrep.com', 'ohneec1Osh', '2023-03-25'),
 (NULL, 'LupeBVance@teleworm.us', 'dee2keeQuu', '2023-03-24'),
 (NULL, 'CharlesMMartindale@dayrep.com', 'Yaca0boh1L', '2023-02-26'),
