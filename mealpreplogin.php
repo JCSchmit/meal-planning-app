@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -12,7 +11,8 @@
     header {
         background-color: #F9A826;
         text-align: center;
-        padding: 10px;
+        padding: 5px;
+
     }
 
     h1 {
@@ -129,25 +129,30 @@ background-color: black;
         text-align: center;
     }
 </style>
+<!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
+
     <!-- <title>Meal Planning App - Login</title> -->
     <!-- <link rel="stylesheet" href="Mealprep.css"> -->
 </head>
 <header>
     <h1>Meal Planning App</h1>
-    <a href="index.html"> <button class="circle-btn">Home</button></a>
-    </div>
 </header>
 
 <body>
+
     <header>
         <!-- <img src="logo.png" alt="Meal Planning App Logo"> -->
     </header>
+    <div class="navbar">
+        <a class="active" href="index.html">Home</a>
+        <a href="createAccount.html">Create Account</a>
+        <a href=" ">PlaceHolder</a>
+        <a href=" ">PlaceHolder</a>
+    </div>
     <main>
         <h2>Welcome back to the Meal Planning App!</h2>
 
