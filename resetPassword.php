@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        /* background-image: url("img/mealprep.jpg"); */
-        background-size: cover;
-        /* background-color: #3367D6; */
-    }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* background-image: url("img/mealprep.jpg"); */
+    background-size: cover;
+    /* background-color: #3367D6; */
+}
 
-    header {
-        background-color: #F9A826;
-        text-align: center;
-        padding: 10px;
-    }
+header {
+    background-color: #F9A826;
+    text-align: center;
+    padding: 10px;
+}
 
-    h1 {
-        font-size: 2em;
-    }
+h1 {
+    font-size: 2em;
+}
 
-    form {
-        display: inline-block;
-        text-align: left;
-    }
+form {
+    display: inline-block;
+    text-align: left;
+}
 
-    label {
-        display: block;
-        margin-bottom: 10px;
-    }
+label {
+    display: block;
+    margin-bottom: 10px;
+}
 
-    input[type="text"],
-    input[type="password"] {
-        padding: 10px;
-        font-size: 1em;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        margin-bottom: 20px;
-        width: 100%;
-    }
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 100%;
+}
 
-    /* button[type="submit"] {
+/* button[type="submit"] {
     padding: 10px;
     background-color: #F9A826;
     color: #fff;
@@ -53,42 +53,42 @@ button[type="submit"]:hover {
     background-color: #FDE68A;
 } */
 
-    button[type="submit"],
-    button[type="button"] {
-        padding: 10px;
-        background-color: #F9A826;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        font-size: 1em;
-        cursor: pointer;
-    }
+button[type="submit"],
+button[type="button"] {
+    padding: 10px;
+    background-color: #F9A826;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
 
-    button[type="submit"]:hover,
-    button[type="button"]:hover {
-        background-color: #FFD580;
-    }
+button[type="submit"]:hover,
+button[type="button"]:hover {
+    background-color: #FFD580;
+}
 
-    a {
-        color: #FDE68A;
-        text-decoration: none;
-    }
+a {
+    color: #FDE68A;
+    text-decoration: none;
+}
 
-    footer {
-        background-color: #F9A826;
-        padding: 5px;
-        text-align: center;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-    }
+footer {
+    background-color: #F9A826;
+    padding: 5px;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
 
-    main {
-        flex: 1;
-        /* Make the main element stretch to fill the remaining space */
-        padding: 20px;
-        text-align: center;
-    }
+main {
+    flex: 1;
+    /* Make the main element stretch to fill the remaining space */
+    padding: 20px;
+    text-align: center;
+}
 </style>
 <?php
 ini_set('display_errors', 1);
