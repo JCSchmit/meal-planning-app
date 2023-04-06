@@ -104,15 +104,7 @@
                 die("Connection failed: " . $conn->connect_error);
             }
 
-            $sql = "SELECT ingredient_name, ingredient_qty, qty_type 
-            FROM ingredients
-            JOIN recipe_ingredients ON ingredients.ingredient_id = recipe_ingredients.ingredient_id
-            JOIN recipes ON recipe_ingredients.recipe_id = recipes.recipe_id
-            JOIN meal_plan ON recipes.recipe_id = meal_plan.recipe_id
-            WHERE meal_plan.plan_start_date = '$plan_start_date'";
-
-            //
-            // $sql = "SELECT ingredient_name, ingredient_qty, qty_type FROM ingredients JOIN meal_plan ON ingredients.recipe_id=meal_plan.recipe_id WHERE meal_plan.plan_start_date='$plan_start_date'";
+            $sql = "SELECT ingredient_name, ingredient_qty, qty_type FROM ingredients JOIN meal_plan ON ingredients.recipe_id=meal_plan.recipe_id WHERE meal_plan.plan_start_date='$plan_start_date'";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
