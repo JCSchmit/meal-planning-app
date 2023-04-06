@@ -1,131 +1,185 @@
+
 <!DOCTYPE html>
 <html>
 
 <head>
-  <style>
-    body {
-      background-color: #f2f2f2;
-      font-family: Arial, sans-serif;
-    }
-
-    header {
-      background-color: #F9A826;
-      text-align: center;
-      color: #fff;
-      font-weight: 700;
-      font-size: 2rem;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      margin: 0;
-      padding: 20px 0;
-      z-index: 1;
-      /* Add this line */
-
-    }
-
-    form {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 400px;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    }
-
-    /* form {
-  width: 400px;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-} */
-    label {
-      display: block;
-      font-weight: bold;
-      margin-top: 20px;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="password"],
-    input[type="confirm password"] {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      margin-bottom: 20px;
-      border-radius: 5px;
-      border: none;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      font-size: 16px;
-    }
-
-    input[type="submit"] {
-      background-color: #F9A826;
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 5px;
-      border: none;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    input[type="submit"]:hover {
-      background-color: #3e8e41;
-    }
-
-    footer {
-      background-color: #F9A826;
-      padding: 5px;
-      text-align: center;
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-    }
-  </style>
-  <title>Create Account</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
-  <link href="meal_planning_app.css" rel="stylesheet">
+	<!-- <title>Create Account</title> -->
+	<meta charset="UTF-8">
+	<header>Create Account</header>
 </head>
 
 <body>
-  <header>
-    <div class="menu">
-      <h1>Meal Planning App</h1>
-      <a href="index.html"> <button class="circle-btn">Home</button></a>
-    </div>
+		<div class="navbar">
+			<a class="active" href="index.html">Home</a>
+			<a href="createAccount.html">Create Account</a>
+			<a href=" ">PlaceHolder</a>
+			<a href=" ">Place your order</a>
+		  </div>
 
-  </header>
+	<form action="register.php" method="POST" enctype="multipart/form-data">
 
-  <!--To do: add php file path-->
-  <form action="xxx.php">
-    <h1>Create Account</h1>
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" placeholder="Enter your username" required>
-
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" placeholder="Enter your email" required>
-
-    <label for="password">Create Password:</label>
-    <input type="password" id="password" name="password" placeholder="Enter your password" required>
-
-    <label for="confirm_password">Confirm Password:</label>
-    <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
-
-    <input type="submit" value="Create Account">
-  </form>
-
-  <footer>
-    <p>&copy; 2023 Meal Planning App. All rights reserved.</p>
-  </footer>
+		<label for="username">Username:</label>
+		<input type="text" id="username" name="username" placeholder="Enter your username" required>
+		
+		<label for="email">Email:</label>
+		<input type="email" id="email" name="email" placeholder="Enter your email" required>
+		
+		<label for="password">Create Password:</label>
+		<input type="password" id="password" name="password" placeholder="Enter your password" required>
+		
+		<label for="confirm_password">Confirm Password:</label>
+		<input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
+		
+		<input type="submit" value="Create Account">
+	</form>
+	
+	<footer>
+		<p>&copy; 2023 Meal Planning App. All rights reserved.</p>
+	</footer>
 </body>
 
+<style>
+	/* Adding some basic styling for the page */
+	body {
+		font-family: Arial, sans-serif;
+		background-color: #f2f2f2;
+		margin: 0;
+		padding: 0;
+	}
+	/* header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		background-color: #F9A826;
+		 color: #fff; 
+		padding: 10px;
+		box-sizing: border-box;
+	} */
+
+	header {
+            background-color: #F9A826;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 2rem;
+        }
+
+	
+	
+
+	form {
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-shadow: 0px 0px 5px #ccc;
+	padding: 10px;
+	max-width: 500px;
+	margin: 20px auto;
+	position: relative;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+	
+	
+	input[type="text"], input[type="email"], input[type="password"] {
+		width: 100%;
+		padding: 10px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		margin-bottom: 10px;
+		box-sizing: border-box;
+		font-size: 16px;
+	}
+	
+	input[type="submit"] {
+		background-color:#F9A826;
+		color: #fff;
+		padding: 10px;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+		font-size: 16px;
+	}
+	
+
+	/* h1 {
+		/* background-color: #4CAF50; */
+		/* text-align: center;
+		margin: 10px 0;
+		padding: auto;
+		top: 0; */
+		/* padding: 20px 0; */
+		/* z-index: 1; */
+	/* } */
+	
+	  h2, footer {
+		text-align: center;
+		margin: 10px 0;
+	} 
+	 footer {
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		background-color: #F9A826;
+		/* color: #F9A826;  */
+		 color: #fff;
+		padding: 10px; 
+	}  
+
+	
+
+	.navbar {
+width: 100%;
+background-color:#FDE68A;
+overflow: auto;
+}
+
+/* Navigation links */
+.navbar a {
+float: left;
+padding: 12px;
+color: white;
+text-decoration: none;
+font-size: 17px;
+width: 25%; 
+text-align: center; 
+}
+
+/* Add a background color on mouse-over */
+.navbar a:hover {
+background-color: #000;
+}
+
+/* Style the current/active link */
+/* .navbar a.active {
+background-color: black;
+} */
+
+
+@media screen and (max-width: 500px) {
+.navbar a {
+float: none;
+display: block;
+width: 100%;
+text-align: left; 
+}
+}
+
+.navbar {
+display: flex;
+justify-content: space-between;
+}
+
+.navbar a {
+flex: 1;
+text-align: center;
+}
+</style>
+
+
 </html>
+
