@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
         header('Location: addrecipe.php');
         exit();
     } else {
-        header('Location: Mealpreplogin.php?error=1');
+        header('Location: mealpreplogin.php?error=1');
         exit();
     }
 }

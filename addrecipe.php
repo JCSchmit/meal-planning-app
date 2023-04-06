@@ -48,8 +48,8 @@
 
                 <label for="ingredient_search" class="ingredient">Ingredient</label><br>
                 <input type="text" id="ingredient_search" name="ingredient_search" class="ingredient_search_box">
-                <botton id="ingredientsearch" name="ingredientsearch" type="submit">
-                    Search</botton>
+                <!-- <botton id="ingredientsearch" name="ingredientsearch" type="submit">
+                    Search</botton> -->
             </form>
             <?php
             displayRecipeNames();
@@ -84,7 +84,8 @@
                             </form> -->
 
                             <label for="recipe_name" class="recipe_name">Recipe name </label><br>
-                            <input type="text" id="recipe_name" name="recipe_name" placeholder="recipe name" required><br>
+                            <input type="text" id="recipe_name" name="recipe_name" placeholder="recipe name"
+                                required><br>
 
                             <label for="mealtype" class="meal_type">Meal type</label><br>
                             <select id="mealtype" name="mealtype" class="meal_type_menu">
@@ -100,19 +101,22 @@
                                 <table>
                                     <tbody>
                                         <tr>
-                                            <td><input type="text" name="ingredient_name[]" placeholder="Ingredient Name"></td>
+                                            <td><input type="text" name="ingredient_name[]"
+                                                    placeholder="Ingredient Name"></td>
                                             <td><input type="text" name="ingredient_quantity[]" placeholder="Quantity">
                                             </td>
                                             <td><input type="text" name="ingredient_unit[]" placeholder="Unit"></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="text" name="ingredient_name[]" placeholder="Ingredient Name"></td>
+                                            <td><input type="text" name="ingredient_name[]"
+                                                    placeholder="Ingredient Name"></td>
                                             <td><input type="text" name="ingredient_quantity[]" placeholder="Quantity">
                                             </td>
                                             <td><input type="text" name="ingredient_unit[]" placeholder="Unit"></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="text" name="ingredient_name[]" placeholder="Ingredient Name"></td>
+                                            <td><input type="text" name="ingredient_name[]"
+                                                    placeholder="Ingredient Name"></td>
                                             <td><input type="text" name="ingredient_quantity[]" placeholder="Quantity">
                                             </td>
                                             <td><input type="text" name="ingredient_unit[]" placeholder="Unit"></td>
@@ -131,7 +135,7 @@
                             <div class=submit>
                                 <input type="submit" name="submit">
                                 <?php
-                                addDatatoTable()
+                                addDatatoTable();
                                 ?>
                             </div>
                         </div>
