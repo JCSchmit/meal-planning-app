@@ -8,10 +8,10 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
     <link href="meal_planning_app.css" rel="stylesheet">
     <style>
-    
     label {
-    margin: 10px; 
+        margin: 10px;
     }
+
     /* for styling the grocery list */
     ul {
         list-style: none;
@@ -73,7 +73,7 @@
         <article>
             <div class="navigate">
                 <div class="menu-item">
-                    <a href="addrecipe.html"> Add recipe</a>
+                    <a href="addrecipe.php"> Add recipe</a>
                 </div>
                 <div class="menu-item">
                     <a href="Plan.html"> Plan</a>
@@ -85,44 +85,44 @@
                     <a href="create_grocery_list.html"> Grocery list</a>
                 </div>
             </div>
-                <br>
-                <label for="grocery_list">Seven day grocery list: </label><br><br>
-                <?php
-                //create short variable names
-                $plan_start_date=$_POST['plan_start_date'];
+            <br>
+            <label for="grocery_list">Seven day grocery list: </label><br><br>
+            <?php
+            //create short variable names
+            $plan_start_date = $_POST['plan_start_date'];
 
-                //connect to database
-                $servername = "localhost";
-                $username = "root";
-                $password = null;
-                $dbname = "mealplanningapp_db";
+            //connect to database
+            $servername = "localhost";
+            $username = "root";
+            $password = null;
+            $dbname = "mealplanningapp_db";
 
-                //create connection
-                @$conn = new mysqli($servername, $username, $password, $dbname);
+            //create connection
+            @$conn = new mysqli($servername, $username, $password, $dbname);
 
-                //check connection
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
+            //check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
 
-                
-                //
-                $sql = "SELECT ingredient_name, ingredient_qty, qty_type FROM ingredients JOIN meal_plan ON ingredients.recipe_id=meal_plan.recipe_id WHERE meal_plan.plan_start_date='$plan_start_date'";
-                $result = $conn->query($sql);
-                
-                if ($result->num_rows > 0) {
-                    echo "<ul class='grocery_list'>";
-                  // output data of each row
-                  while($row = $result->fetch_assoc()) {
+
+            //
+            $sql = "SELECT ingredient_name, ingredient_qty, qty_type FROM ingredients JOIN meal_plan ON ingredients.recipe_id=meal_plan.recipe_id WHERE meal_plan.plan_start_date='$plan_start_date'";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                echo "<ul class='grocery_list'>";
+                // output data of each row
+                while ($row = $result->fetch_assoc()) {
                     echo  "<li><input type='checkbox'>" . "<strong>" . $row["ingredient_name"] . "</strong>" . ":    " . "(" . $row["ingredient_qty"] . " " .  $row["qty_type"] . ")" . "</li>";
-                  }
-                } else {
-                  echo "No ingredients found.";
                 }
-                
-                //close connection to database
-                $conn->close();
-                ?>
+            } else {
+                echo "No ingredients found.";
+            }
+
+            //close connection to database
+            $conn->close();
+            ?>
             </form>
         </article>
     </section>
