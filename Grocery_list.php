@@ -8,29 +8,29 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
     <link href="meal_planning_app.css" rel="stylesheet">
     <style>
-    label {
-        margin: 10px;
-    }
+        label {
+            margin: 10px;
+        }
 
-    /* for styling the grocery list */
-    ul {
-        list-style: none;
-        padding: 10px;
-        padding-left: 30px;
-        margin: 0;
-    }
+        /* for styling the grocery list */
+        ul {
+            list-style: none;
+            padding: 10px;
+            padding-left: 30px;
+            margin: 0;
+        }
 
-    /* for styling the list items */
-    li {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-    }
+        /* for styling the list items */
+        li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
 
-    /* for styling the checkbox */
-    input[type="checkbox"] {
-        margin-right: 10px;
-    }
+        /* for styling the checkbox */
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
     </style>
 </head>
 
@@ -55,8 +55,7 @@
             </select><br><br>
 
             <label for="ingredient_search" class="ingredient">Ingredient</label><br>
-            <input type="text" id="ingredient_search" name="ingredient_search" value="search"
-                class="ingredient_search_box">
+            <input type="text" id="ingredient_search" name="ingredient_search" value="search" class="ingredient_search_box">
 
             <image-container>
                 <img src="https://placehold.co/240X160" alt="description of the image" class="image">
@@ -76,7 +75,7 @@
                     <a href="addrecipe.php"> Add recipe</a>
                 </div>
                 <div class="menu-item">
-                    <a href="Plan.html"> Plan</a>
+                    <a href="plan.html"> Plan</a>
                 </div>
                 <div class="menu-item">
                     <a href="cookpage.php"> Cook</a>
@@ -93,9 +92,9 @@
 
             //connect to database
             $servername = "localhost";
-            $username = "root";
-            $password = null;
-            $dbname = "mealplanningapp_db";
+            $username = "ics325sp235003";
+            $password = "8989";
+            $dbname = "ics325sp235003";
 
             //create connection
             @$conn = new mysqli($servername, $username, $password, $dbname);
@@ -105,9 +104,15 @@
                 die("Connection failed: " . $conn->connect_error);
             }
 
+            $sql = "SELECT ingredient_name, ingredient_qty, qty_type 
+            FROM ingredients
+            JOIN recipe_ingredients ON ingredients.ingredient_id = recipe_ingredients.ingredient_id
+            JOIN recipes ON recipe_ingredients.recipe_id = recipes.recipe_id
+            JOIN meal_plan ON recipes.recipe_id = meal_plan.recipe_id
+            WHERE meal_plan.plan_start_date = '$plan_start_date'";
 
             //
-            $sql = "SELECT ingredient_name, ingredient_qty, qty_type FROM ingredients JOIN meal_plan ON ingredients.recipe_id=meal_plan.recipe_id WHERE meal_plan.plan_start_date='$plan_start_date'";
+            // $sql = "SELECT ingredient_name, ingredient_qty, qty_type FROM ingredients JOIN meal_plan ON ingredients.recipe_id=meal_plan.recipe_id WHERE meal_plan.plan_start_date='$plan_start_date'";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -127,9 +132,9 @@
         </article>
     </section>
     <!-- Footer -->
-    <footer>
+    <!-- <footer>
         <p>&copy; 2023 Meal Planning App. All rights reserved.</p>
-    </footer>
+    </footer> -->
 </body>
 
 </html>

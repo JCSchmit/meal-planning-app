@@ -26,9 +26,9 @@
             require_once 'add.php';
 
             $servername = "localhost";
-            $username = "root";
-            $password = null;
-            $dbname = "mealplanningapp_db";
+            $username = "ics325sp235003";
+            $password = "8989";
+            $dbname = "ics325sp235003";
 
             // Create connection
             $conn = new mysqli($servername, $username, $password, $dbname);
@@ -62,7 +62,7 @@
                     <a href="addrecipe.php"> Add recipe</a>
                 </div>
                 <div class="menu-item">
-                    <a href="Plan.html"> Plan</a>
+                    <a href="plan.html"> Plan</a>
                 </div>
                 <div class="menu-item">
                     <a href="cookpage.php"> Cook</a>
@@ -78,10 +78,10 @@
 
 
                             <!-- <img src="https://placehold.co/300X200" alt="description of the image"><br> -->
-                            <form method="POST" enctype="multipart/form-data">
+                            <!-- <form method="POST" enctype="multipart/form-data">
                                 <input type="file" name="recipe_img" id="recipe_img">
                                 <button type="submit" name="submit">Upload</button><br><br>
-                            </form>
+                            </form> -->
 
                             <label for="recipe_name" class="recipe_name">Recipe name </label><br>
                             <input type="text" id="recipe_name" name="recipe_name" placeholder="recipe name" required><br>

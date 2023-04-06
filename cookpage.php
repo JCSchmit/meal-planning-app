@@ -25,9 +25,9 @@
             require_once 'recipe.php';
 
             $servername = "localhost";
-            $username = "root";
-            $password = null;
-            $dbname = "mealplanningapp_db";
+            $username = "ics325sp235003";
+            $password = "8989";
+            $dbname = "ics325sp235003";
 
             // Create connection
             $conn = new mysqli($servername, $username, $password, $dbname);
@@ -61,7 +61,7 @@
                     <a href="addrecipe.php"> Add recipe</a>
                 </div>
                 <div class="menu-item">
-                    <a href="Plan.html"> Plan</a>
+                    <a href="plan.html"> Plan</a>
                 </div>
                 <div class="menu-item active">
                     <a href="cookpage.php"> Cook</a>
