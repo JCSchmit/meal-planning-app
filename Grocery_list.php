@@ -8,29 +8,29 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
     <link href="meal_planning_app.css" rel="stylesheet">
     <style>
-    label {
-        margin: 10px;
-    }
+        label {
+            margin: 10px;
+        }
 
-    /* for styling the grocery list */
-    ul {
-        list-style: none;
-        padding: 10px;
-        padding-left: 30px;
-        margin: 0;
-    }
+        /* for styling the grocery list */
+        ul {
+            list-style: none;
+            padding: 10px;
+            padding-left: 30px;
+            margin: 0;
+        }
 
-    /* for styling the list items */
-    li {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-    }
+        /* for styling the list items */
+        li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
 
-    /* for styling the checkbox */
-    input[type="checkbox"] {
-        margin-right: 10px;
-    }
+        /* for styling the checkbox */
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
     </style>
 </head>
 
@@ -55,8 +55,7 @@
             </select><br><br>
 
             <label for="ingredient_search" class="ingredient">Ingredient</label><br>
-            <input type="text" id="ingredient_search" name="ingredient_search" value="search"
-                class="ingredient_search_box">
+            <input type="text" id="ingredient_search" name="ingredient_search" value="search" class="ingredient_search_box">
 
             <image-container>
                 <img src="https://placehold.co/240X160" alt="description of the image" class="image">
@@ -105,7 +104,18 @@
                 die("Connection failed: " . $conn->connect_error);
             }
 
-            $sql = "SELECT ingredient_name, ingredient_qty, qty_type FROM ingredients JOIN meal_plan ON ingredients.recipe_id=meal_plan.recipe_id WHERE meal_plan.plan_start_date='$plan_start_date'";
+            $sql = "SELECT 
+            ingredient_name, 
+            ingredient_qty, 
+            qty_type 
+            
+            FROM ingredients
+            INNER JOIN recipe_ingredients on ingredients.ingredient_id=recipe_ingredients.ingredient_id
+            INNER JOIN plan_recipe on recipe_ingredients.recipe_id = plan_recipe.recipe_id
+            INNER JOIN meal_plan on plan_recipe.meal_id = meal_plan.meal_id
+            
+            WHERE plan_start_date = '$plan_start_date'";
+
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
