@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
 
     if ($result->num_rows > 0) {
         $_SESSION['loggedin'] = true;
-        header('Location: addrecipe.html');
+        header('Location: addrecipe.php');
         exit();
     } else {
         header('Location: Mealpreplogin.php?error=1');
