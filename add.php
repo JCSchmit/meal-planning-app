@@ -3,28 +3,36 @@
 function displayRecipeNames()
 {
     global $conn;
-    $mealtype = isset($_POST['mealtype']) ? $_POST['mealtype'] : '';
+    $mealtype = isset($_POST['mealtypesearch']) ? $_POST['mealtypesearch'] : '';
     $ingredient = isset($_POST['ingredient_search']) ? $_POST['ingredient_search'] : '';
 
-    // Construct SQL query with filters
-    $sql = "SELECT DISTINCT recipes.recipe_id, recipes.recipe_name 
+    $sql = "SELECT DISTINCT recipes.recipe_id, recipes.recipe_name, recipes.recipe_img
         FROM recipes 
         JOIN recipe_ingredients ON recipes.recipe_id = recipe_ingredients.recipe_id 
         JOIN ingredients ON recipe_ingredients.ingredient_id = ingredients.ingredient_id 
         WHERE 1=1 ";
     if (!empty($mealtype) && $mealtype != 'blank') {
         $sql .= " AND recipes.meal_type = '{$mealtype}'";
-    }
-    if (!empty($ingredient)) {
-        $sql .= " AND ingredients.ingredient_name = '{$ingredient}'";
+        // $sql .= " AND (recipes.meal_type  = '{$mealtype}')";
+        if (!empty($ingredient)) {
+            $sql .= " AND ingredients.ingredient_name = '{$ingredient}'";
+        }
+    } else {
+        if (!empty($ingredient)) {
+            $sql .= " AND ingredients.ingredient_name = '{$ingredient}'";
+        }
     }
     // Execute query
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-        echo "<ul>";
+        echo "<ul style='overflow-y: scroll; max-height: 800px;list-style-type: none;'>";
         while ($row = $result->fetch_assoc()) {
+            $file_path = $row["recipe_img"];
             echo "<li><form><input type='hidden' value='" . $row['recipe_id'] . "'>
-            <button >" . $row['recipe_name'] . "</button></form></li>";
+            <button> . <div style='position: relative; width: 300px; height: 200px; background-image: url(\"uploads/" . $file_path . "\"); background-size: cover;'>
+            <div style='position: absolute; bottom: 0; left: 0; right: 0; background-color: rgba(0, 0, 0, 0.7); color: #fff; padding: 5px;'>
+            " . $row['recipe_name']  . "</div>
+            </div> </button></form></li>";
         }
         echo "</ul>";
     } else {
@@ -32,75 +40,78 @@ function displayRecipeNames()
     }
 }
 
-function setimage()
-{
-    global $conn;
-    if (isset($_POST['submit'])) {
-        // Check if file was uploaded without errors
-        if (isset($_FILES["recipe_img"]) && $_FILES["recipe_img"]["error"] == 0) {
-            $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "png" => "image/png");
-            $filename = $_FILES["recipe_img"]["name"];
-            $filetype = $_FILES["recipe_img"]["type"];
-            $filesize = $_FILES["recipe_img"]["size"];
+$recipe_id;
 
-            // Verify file extension
-            $ext = pathinfo($filename, PATHINFO_EXTENSION);
-            if (!array_key_exists($ext, $allowed)) die("Error: Please select a valid file format.");
-
-            // Verify file size - 5MB maximum
-            $maxsize = 5 * 1024 * 1024;
-            if ($filesize > $maxsize) die("Error: File size is larger than the allowed limit.");
-
-            // Verify MIME type of the file
-            if (in_array($filetype, $allowed)) {
-                // Upload file to server
-                $tmpname = $_FILES["recipe_img"]["tmp_name"];
-                $newname = uniqid('', true) . '.' . $ext;
-                $filepath = "uploads/" . $newname;
-                move_uploaded_file($tmpname, $filepath);
-
-                // Update recipe_img column in the recipe table
-                $recipe_id = 1; // Set recipe ID to the appropriate value
-                $sql = "UPDATE recipe SET recipe_img = '{$newname}' WHERE recipe_id = '{$recipe_id}'";
-                if ($conn->query($sql) === TRUE) {
-                    echo "Image uploaded successfully.";
-                } else {
-                    echo "Error updating image: " . $conn->error;
-                }
-            } else {
-                echo "Error: There was a problem uploading your file. Please try again.";
-            }
-        } else {
-            echo "Error: " . $_FILES["recipe_img"]["error"];
-        }
-    }
-}
-
-function addDatatoTable()
+function addDatatoTable($account_id)
 {
     if (isset($_POST['submit'])) {
 
         global $conn;
 
-        $recipe_name = $_POST['recipe_name'];
-        $meal_type = $_POST['mealtype'];
-        $instructions = $_POST['instructions'];
-        $ingredient_names = $_POST['ingredient_name'];
-        $ingredient_quantities = $_POST['ingredient_quantity'];
-        $ingredient_units = $_POST['ingredient_unit'];
-        //check if the recipe already exists
-        $recipe_result = $conn->query("SELECT recipe_id FROM recipes WHERE 
-        recipe_name = '$recipe_name'");
-        if ($recipe_result->num_rows > 0) {
-            echo "<p>This recipe name already exists.</p>";
-        } else {
-            // Prepare the recipe insert statement
-            $recipe_stmt = $conn->prepare('INSERT INTO recipes (recipe_name, meal_type, instruction_text) VALUES (?, ?, ?)');
-            $recipe_stmt->bind_param('sss', $recipe_name, $meal_type, $instructions);
+        $recipe_name = isset($_POST['recipe_name']) ? htmlspecialchars($_POST['recipe_name']) : '';
+        $meal_type = isset($_POST['mealtype']) ? htmlspecialchars($_POST['mealtype']) : '';
+        $instructions = isset($_POST['instructions']) ? htmlspecialchars($_POST['instructions']) : '';
+        $ingredient_names = isset($_POST['ingredient_name']) ? $_POST['ingredient_name'] : [];
+        $ingredient_quantities = isset($_POST['ingredient_quantity']) ? $_POST['ingredient_quantity'] : [];
+        $ingredient_units = isset($_POST['ingredient_unit']) ? $_POST['ingredient_unit'] : [];
 
-            // Insert the recipe and retrieve its id
-            $recipe_stmt->execute();
-            $recipe_id = $conn->insert_id;
+        // Validate and sanitize input
+        $recipe_name = trim($recipe_name);
+        $meal_type = trim($meal_type);
+        $instructions = trim($instructions);
+
+        $ingredient_names = array_map('trim', $ingredient_names);
+        $ingredient_names = array_map('htmlspecialchars', $ingredient_names);
+
+        $ingredient_quantities = array_map('trim', $ingredient_quantities);
+        $ingredient_quantities = array_map('htmlspecialchars', $ingredient_quantities);
+
+        $ingredient_units = array_map('trim', $ingredient_units);
+        $ingredient_units = array_map('htmlspecialchars', $ingredient_units);
+
+        // echo "<pre>";
+        // print_r($_FILES['recipe-img']);
+        // echo "</pre>";
+        $img_name = $_FILES['recipe-img']['name'];
+        $img_size = $_FILES['recipe-img']['size'];
+        $tmp_name = $_FILES['recipe-img']['tmp_name'];
+
+        if ($img_size > 500000) {
+            echo "<p> Sorry, your file is too large.</p>";
+        } else {
+            $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+            $img_ex_lc = strtolower($img_ex);
+
+            $allowed_exs = array("jpg", "jpeg", "png");
+
+            if (in_array($img_ex_lc, $allowed_exs)) {
+                $new_img_name = uniqid("IMG-", true) . '.' . $img_ex_lc;
+                $img_upload_path = 'uploads/' . $new_img_name;
+                move_uploaded_file($tmp_name, $img_upload_path);
+            } else {
+                echo "<p>You can't upload files of this type</p>";
+            }
+
+            $recipe_result = $conn->query("SELECT recipe_id FROM recipes WHERE 
+             recipe_name = '$recipe_name'");
+            if ($recipe_result->num_rows > 0) {
+                echo "<p>This recipe name already exists.</p>";
+            } else {
+                global $recipe_stmt;
+
+                // Prepare the recipe insert statement
+                $recipe_stmt = $conn->prepare('INSERT INTO recipes (recipe_name, meal_type, instruction_text, account_id, recipe_img) VALUES (?, ?, ?, ?, ?)');
+                $recipe_stmt->bind_param('sssis', $recipe_name, $meal_type, $instructions, $account_id, $new_img_name);
+
+                // Insert the recipe and retrieve its id
+                $recipe_stmt->execute();
+                $recipe_id = $conn->insert_id;
+                if ($recipe_stmt) {
+                    echo "Image uploaded and saved to database.";
+                } else {
+                    echo "Error: " . $recipe_stmt . "<br>" . mysqli_error($conn);
+                }
+            }
 
             // Counter for filled rows
             $filled_rows = 0;
@@ -126,10 +137,11 @@ function addDatatoTable()
                         $ingredient_id = $ingredient_result->fetch_assoc()['ingredient_id'];
                     } else {
                         // Otherwise, insert the ingredient into the database and retrieve its id
-                        $conn->query("INSERT INTO ingredients (ingredient_name, ingredient_qty, qty_type ) 
-                    VALUES ('$name', '$quantity', '$unit')");
-
+                        $ingredient_stmt = $conn->prepare('INSERT INTO ingredients (ingredient_name, ingredient_qty, qty_type ) VALUES (?, ?, ?)');
+                        $ingredient_stmt->bind_param('sss', $name, $quantity, $unit);
+                        $ingredient_stmt->execute();
                         $ingredient_id = $conn->insert_id;
+                        $ingredient_stmt->close();
                     }
 
                     // Prepare the recipe-ingredient insert statement
@@ -141,11 +153,10 @@ function addDatatoTable()
                     $recipe_ingredient_stmt->close();
                 }
             }
-
-            // Close the prepared statements and database connection
-            $recipe_stmt->close();
-
-            echo "<p><strong>recipe_name is added successfully</strong></p>";
         }
+        // Close the prepared statements and database connection
+        $recipe_stmt->close();
+
+        echo "<p><strong>$recipe_name is added successfully</strong></p>";
     }
 }

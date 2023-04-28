@@ -10,7 +10,8 @@ CREATE TABLE recipes
 account_id INT(10) UNSIGNED NOT NULL,
 recipe_name CHAR (100) NOT NULL,
 instruction_text TEXT NOT NULL,
-meal_type CHAR (20) NOT NULL
+meal_type CHAR (20) NOT NULL,
+recipe_img text NOT NULL
 );
 
 ALTER TABLE recipes ADD FOREIGN KEY (account_id) REFERENCES user(account_id);
@@ -26,7 +27,8 @@ CREATE TABLE meal_plan
 (meal_id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 account_id INT(10) UNSIGNED NOT NULL,
 plan_start_date DATE not null,
-plan_end_date DATE not null
+plan_end_date DATE not null,
+meals JSON not null
 );
 
 ALTER TABLE meal_plan ADD FOREIGN KEY (account_id) REFERENCES user(account_id);

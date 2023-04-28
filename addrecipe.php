@@ -14,8 +14,9 @@
     <header>
         <div class="menu">
             <h1>Meal Planning App</h1>
+            <a href="index.html"> <button class="circle-btn">Home</button></a>
             <!--Link to user profile page-->
-            <a href="accountUserProfile.html"> <button class="circle-btn">Account</button></a>
+            <a href="accountUserProfile.php"> <button class="circle-btn">Account</button></a>
         </div>
     </header>
     <!-- Main section -->
@@ -23,13 +24,20 @@
         <!--Left panel-->
         <aside>
             <?php
+            session_start();
+            if (!isset($_SESSION['loggedin'])) {
+                header('Location: mealpreplogin.php');
+                exit();
+            }
+            $account_id = $_SESSION['account_id'];
             require_once 'add.php';
 
-            $servername = "localhost";
-            $username = "ics325sp235003";
-            $password = "8989";
-            $dbname = "ics325sp235003";
 
+
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "mealplanningapp_db";
             // Create connection
             $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -39,8 +47,8 @@
             }
             ?>
             <form method="POST" id="search">
-                <label for="mealtype" class="meal_type">Meal type</label><br>
-                <select id="meal_type" name="mealt_ype" class="meal_type_menu">
+                <label for="mealtypesearch" class="mealtypesearch">Meal type</label><br>
+                <select id="mealtypesearch" name="mealtypesearch" class="mealtypesearch">
                     <option value="blank">Select to filter</option>
                     <option value="plantbased">Plant based</option>
                     <option value="animalprotien">Animal protien</option>
@@ -48,8 +56,8 @@
 
                 <label for="ingredient_search" class="ingredient">Ingredient</label><br>
                 <input type="text" id="ingredient_search" name="ingredient_search" class="ingredient_search_box">
-                <!-- <botton id="ingredientsearch" name="ingredientsearch" type="submit">
-                    Search</botton> -->
+                <input type="submit" id="ingredientsearch" name="ingredientsearch" type="submit">
+
             </form>
             <?php
             displayRecipeNames();
@@ -62,30 +70,36 @@
                     <a href="addrecipe.php"> Add recipe</a>
                 </div>
                 <div class="menu-item">
-                    <a href="plan.html"> Plan</a>
+                    <a href="plan.php"> Plan</a>
                 </div>
                 <div class="menu-item">
                     <a href="cookpage.php"> Cook</a>
                 </div>
                 <div class="menu-item">
-                    <a href="create_grocery_list.html"> Grocery list</a>
+                    <a href="create_grocery_list.php"> Grocery list</a>
                 </div>
             </div>
             <div class="recipe">
-                <form method="post" id="addrecipes" name="addrecipes">
+                <form method="post" id="addrecipes" name="addrecipes" enctype="multipart/form-data">
                     <div class="container">
                         <div class="left">
 
 
                             <!-- <img src="https://placehold.co/300X200" alt="description of the image"><br> -->
-                            <!-- <form method="POST" enctype="multipart/form-data">
-                                <input type="file" name="recipe_img" id="recipe_img">
-                                <button type="submit" name="submit">Upload</button><br><br>
+                            <!-- <form method="POST" enctype="multipart/form-data"> -->
+                            <!-- <input type="file" name="image" accept="image/*"><br><br> -->
+                            <!-- <button type="submit" name="submit">Upload</button><br><br>
                             </form> -->
 
+                            <!-- <form action="upload.php" method="post" enctype="multipart/form-data"> -->
+
+                            <label for="recipe-img">Image:</label>
+                            <input type="file" id="recipe-img" name="recipe-img"><br><br>
+
+                            <!-- <input type="submit" name="submit" value="Upload" onclick="addrecipeimg()"> -->
+                            <!-- </form> -->
                             <label for="recipe_name" class="recipe_name">Recipe name </label><br>
-                            <input type="text" id="recipe_name" name="recipe_name" placeholder="recipe name"
-                                required><br>
+                            <input type="text" id="recipe_name" name="recipe_name" placeholder="recipe name" pattern="[A-Za-z0-9 ]+" required><br>
 
                             <label for="mealtype" class="meal_type">Meal type</label><br>
                             <select id="mealtype" name="mealtype" class="meal_type_menu">
@@ -101,23 +115,20 @@
                                 <table>
                                     <tbody>
                                         <tr>
-                                            <td><input type="text" name="ingredient_name[]"
-                                                    placeholder="Ingredient Name"></td>
-                                            <td><input type="text" name="ingredient_quantity[]" placeholder="Quantity">
+                                            <td><input type="text" name="ingredient_name[]" pattern="[A-Za-z ]+" placeholder="Ingredient Name"></td>
+                                            <td><input type="text" name="ingredient_quantity[]" placeholder="Quantity" pattern="[0-9]+">
                                             </td>
                                             <td><input type="text" name="ingredient_unit[]" placeholder="Unit"></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="text" name="ingredient_name[]"
-                                                    placeholder="Ingredient Name"></td>
-                                            <td><input type="text" name="ingredient_quantity[]" placeholder="Quantity">
+                                            <td><input type="text" name="ingredient_name[]" pattern="[A-Za-z ]+" placeholder="Ingredient Name"></td>
+                                            <td><input type="text" name="ingredient_quantity[]" placeholder="Quantity" pattern="[0-9]+">
                                             </td>
                                             <td><input type="text" name="ingredient_unit[]" placeholder="Unit"></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="text" name="ingredient_name[]"
-                                                    placeholder="Ingredient Name"></td>
-                                            <td><input type="text" name="ingredient_quantity[]" placeholder="Quantity">
+                                            <td><input type="text" name="ingredient_name[]" pattern="[A-Za-z ]+" placeholder="Ingredient Name"></td>
+                                            <td><input type="text" name="ingredient_quantity[]" placeholder="Quantity" pattern="[0-9]+">
                                             </td>
                                             <td><input type="text" name="ingredient_unit[]" placeholder="Unit"></td>
                                         </tr>
@@ -130,12 +141,16 @@
 
                             <div class="instruction_entry">
                                 <label for="instructions">Instructions</label><br>
-                                <textarea name="instructions" id="instructions" rows="10" required></textarea>
+                                <textarea name="instructions" id="instructions" placeholder="1. Write each step of the instructions as a separate line.
+2. After completing a step, use a period (full stop) to indicate the end of that step.
+3. Make sure to start a new line and to finish with a period for each step." pattern="[A-Za-z0-9'`,.() ]+" rows="10" required></textarea>
                             </div>
                             <div class=submit>
                                 <input type="submit" name="submit">
+                                <br><br>
                                 <?php
-                                addDatatoTable();
+                                addDatatoTable($account_id);
+                                // setimage();
                                 ?>
                             </div>
                         </div>
